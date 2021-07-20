@@ -12,38 +12,43 @@ namespace KeyMapper
         {
             Console.WriteLine("NumToSymbol");
             Console.WriteLine("Input \"1 2 3 4 5 6 7 8 9 0\" with a space in between");
-            int result = Convert.ToInt32(Console.ReadLine());
+            string result = Console.ReadLine();
             Mapper(result);
         }
-        private static int SpecialChars = ")(*&^%$#@!";
-        public static void Mapper(int num)
+        private static string SpecialNums = "1234567890";
+        public static void Mapper(string num)
         {
+            //Query Method
+            var methodSyntaxNums = from sNum in num.Split()
+                                    where SpecialNums.Contains(sNum)
+                                    select sNum;
 
-            var methodSyntaxChars = from sChar in chars.Split()
-                                    where SpecialChars.Contains(sChar)
-                                    select sChar;
 
-            Console.WriteLine();
-            Console.WriteLine("Method syntax Output: ");
-            foreach (var item in methodSyntaxChars)
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("----------------------");
+            foreach (var item in methodSyntaxNums)
             {
                 switch (item)
                 {
-                    case ")": Console.Write("1"); break;
-                    case "(": Console.Write("2"); break;
-                    case "*": Console.Write("3"); break;
-                    case "&": Console.Write("4"); break;
-                    case "^": Console.Write("5"); break;
-                    case "%": Console.Write("6"); break;
-                    case "$": Console.Write("7"); break;
-                    case "#": Console.Write("8"); break;
-                    case "@": Console.Write("9"); break;
-                    case "!": Console.Write("0"); break;
+                    case "1": Console.Write(")"); break;
+                    case "2": Console.Write("("); break;
+                    case "3": Console.Write("*"); break;
+                    case "4": Console.Write("&"); break;
+                    case "5": Console.Write("^"); break;
+                    case "6": Console.Write("%"); break;
+                    case "7": Console.Write("$"); break;
+                    case "8": Console.Write("#"); break;
+                    case "9": Console.Write("@"); break;
+                    case "0": Console.Write("!"); break;
                     default:
-                        Console.WriteLine($"{item} is not a special character");
+                        Console.WriteLine($"{item} is not a number");
                         break;
                 }
             }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\n\nPress Enter to go to the main menu!");
+            Console.ReadLine();
+            Console.Clear();
         }
     }
 }

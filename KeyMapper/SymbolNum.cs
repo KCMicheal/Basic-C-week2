@@ -27,7 +27,7 @@ namespace KeyMapper
             } else if(result == "2")
             {
                 Console.Clear();
-                //NumSymbol.NumToSymbol();
+                NumSymbol.NumToSymbol();
                 return true;
             }else if(result == "3")
             {
